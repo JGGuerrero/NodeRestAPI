@@ -31,6 +31,24 @@ export class Tshirt {
           method: "POST",
           callback: this.getTshirtByColor,
           requireToken: true,
+        },
+        {
+          route: "/create-tshirt",
+          method: "POST",
+          callback: this.createTshirt,
+          requireToken: true,
+        },
+        {
+          route: "/update-tshirt/id/:id",
+          method: "PUT",
+          callback: this.updateTshirt,
+          requireToken: true,
+        },
+        {
+          route: "/delete-tshirt/id/:id",
+          method: "DELETE",
+          callback: this.deleteTshirt,
+          requireToken: true,
         }
       ]];
   }
@@ -56,6 +74,33 @@ export class Tshirt {
       }
       let tshirtCtrl = model.controller;
       let resp = await tshirtCtrl.get(req, null, null);
+      res.json({ message: "Success", resp });
+    }
+  }
+
+  createTshirt(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      console.log('req.body ===> ', req.body);
+      let tshirtCtrl = model.controller;
+      let resp = await tshirtCtrl.insert(req, null, null);
+      res.json({ message: "Success", resp });
+    }
+  }
+
+  deleteTshirt(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      console.log('req.body ===> ', req.body);
+      let tshirtCtrl = model.controller;
+      let resp = await tshirtCtrl.remove(req, null, null);
+      res.json({ message: "Success", resp });
+    }
+  }
+
+  updateTshirt(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      console.log('req.body ===> ', req.body);
+      let tshirtCtrl = model.controller;
+      let resp = await tshirtCtrl.update(req, null, null);
       res.json({ message: "Success", resp });
     }
   }

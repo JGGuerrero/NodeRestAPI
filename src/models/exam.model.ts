@@ -25,6 +25,24 @@ export class Exam {
         method: "POST",
         callback: this.getExamById,
         requireToken: true,
+      },
+      {
+        route: "/create-exam",
+        method: "POST",
+        callback: this.createExam,
+        requireToken: true,
+      },
+      {
+        route: "/update-exam/id/:id",
+        method: "PUT",
+        callback: this.updateExam,
+        requireToken: true,
+      },
+      {
+        route: "/delete-exam/id/:id",
+        method: "DELETE",
+        callback: this.deleteExam,
+        requireToken: true,
       }
     ]];
   }
@@ -50,6 +68,33 @@ export class Exam {
       }
       let examCtrl = model.controller;
       let resp = await examCtrl.get(req, null, null);
+      res.json({ message: "Success", resp });
+    }
+  }
+
+  createExam(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      console.log('req.body ===> ', req.body);
+      let examCtrl = model.controller;
+      let resp = await examCtrl.insert(req, null, null);
+      res.json({ message: "Success", resp });
+    }
+  }
+
+  deleteExam(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      console.log('req.body ===> ', req.body);
+      let examCtrl = model.controller;
+      let resp = await examCtrl.remove(req, null, null);
+      res.json({ message: "Success", resp });
+    }
+  }
+
+  updateExam(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      console.log('req.body ===> ', req.body);
+      let examCtrl = model.controller;
+      let resp = await examCtrl.update(req, null, null);
       res.json({ message: "Success", resp });
     }
   }

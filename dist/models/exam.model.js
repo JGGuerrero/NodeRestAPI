@@ -32,6 +32,12 @@ class Exam {
                     method: "POST",
                     callback: this.getExamById,
                     requireToken: true,
+                },
+                {
+                    route: "/create-exam",
+                    method: "POST",
+                    callback: this.createExam,
+                    requireToken: true,
                 }
             ]];
     }
@@ -55,6 +61,14 @@ class Exam {
             };
             let examCtrl = model.controller;
             let resp = yield examCtrl.get(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    createExam(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let examCtrl = model.controller;
+            let resp = yield examCtrl.insert(req, null, null);
             res.json({ message: "Success", resp });
         });
     }
