@@ -31,12 +31,6 @@ export class Exam {
         method: "POST",
         callback: this.createExam,
         requireToken: true,
-      },
-      {
-        route: "/update-exam/id/:id",
-        method: "PUT",
-        callback: this.updateExam,
-        requireToken: true,
       }
     ]];
   }
@@ -76,14 +70,7 @@ export class Exam {
   }
 
 
-  updateExam(model: any) {
-    return async (req: Request, res: Response, next: NextFunction) => {
-      console.log('req.body ===> ', req.body);
-      let examCtrl = model.controller;
-      let resp = await examCtrl.update(req, null, null);
-      res.json({ message: "Success", resp });
-    }
-  }
+
 
   set model(model: any) {
     this._model = model;
