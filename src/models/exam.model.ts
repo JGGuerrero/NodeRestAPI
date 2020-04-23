@@ -37,12 +37,6 @@ export class Exam {
         method: "PUT",
         callback: this.updateExam,
         requireToken: true,
-      },
-      {
-        route: "/delete-exam/id/:id",
-        method: "DELETE",
-        callback: this.deleteExam,
-        requireToken: true,
       }
     ]];
   }
@@ -81,14 +75,6 @@ export class Exam {
     }
   }
 
-  deleteExam(model: any) {
-    return async (req: Request, res: Response, next: NextFunction) => {
-      console.log('req.body ===> ', req.body);
-      let examCtrl = model.controller;
-      let resp = await examCtrl.remove(req, null, null);
-      res.json({ message: "Success", resp });
-    }
-  }
 
   updateExam(model: any) {
     return async (req: Request, res: Response, next: NextFunction) => {

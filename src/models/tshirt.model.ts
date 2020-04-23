@@ -43,12 +43,6 @@ export class Tshirt {
           method: "PUT",
           callback: this.updateTshirt,
           requireToken: true,
-        },
-        {
-          route: "/delete-tshirt/id/:id",
-          method: "DELETE",
-          callback: this.deleteTshirt,
-          requireToken: true,
         }
       ]];
   }
@@ -83,15 +77,6 @@ export class Tshirt {
       console.log('req.body ===> ', req.body);
       let tshirtCtrl = model.controller;
       let resp = await tshirtCtrl.insert(req, null, null);
-      res.json({ message: "Success", resp });
-    }
-  }
-
-  deleteTshirt(model: any) {
-    return async (req: Request, res: Response, next: NextFunction) => {
-      console.log('req.body ===> ', req.body);
-      let tshirtCtrl = model.controller;
-      let resp = await tshirtCtrl.remove(req, null, null);
       res.json({ message: "Success", resp });
     }
   }
