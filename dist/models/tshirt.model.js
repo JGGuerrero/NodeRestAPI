@@ -8,53 +8,60 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Exam {
+class Tshirt {
     constructor(norm) {
-        this.model = [{
-                id: { type: Number, key: 'primary' },
-                exam_name: { type: String, maxlength: 24 },
+        this.model = [
+            {
+                id: { type: Number, key: "primary" },
+                tshirt_name: { type: String, maxlength: 200 },
+                brand: { type: String, maxlength: 48 },
+                color: { type: String, maxlength: 24 },
+                size: { type: String, maxlength: 24 },
                 user_id: {
                     type: Number,
-                    key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
+                    key: "foreign",
+                    references: { table: "User", foreignKey: "id" },
+                    onDelete: "cascade",
+                    onUpdate: "cascade",
                 },
-            }, 'A table to store exam model', [
+            },
+            "A table to store tshirt model",
+            [
                 {
-                    route: "/get-all-exams",
+                    route: "/get-all-tshirts",
                     method: "POST",
-                    callback: this.getAllExams,
+                    callback: this.getAllTshirts,
                     requireToken: true,
                 },
                 {
-                    route: "/get-exam-by-id/:id",
+                    route: "/get-tshirt-by-color/:color",
                     method: "POST",
-                    callback: this.getExamById,
+                    callback: this.getTshirtByColor,
                     requireToken: true,
                 }
-            ]];
+            ]
+        ];
     }
-    getAllExams(model) {
+    getAllTshirts(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ["*"]
             };
-            let examCtrl = model.controller;
-            let resp = yield examCtrl.get(req, null, null);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.get(req, null, null);
             res.json({ message: "Success", resp });
         });
     }
-    getExamById(model) {
+    getTshirtByColor(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ["*"],
                 where: {
-                    id: req.params.id
+                    color: req.params.color
                 }
             };
-            let examCtrl = model.controller;
-            let resp = yield examCtrl.get(req, null, null);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.get(req, null, null);
             res.json({ message: "Success", resp });
         });
     }
@@ -65,4 +72,4 @@ class Exam {
         return this._model;
     }
 }
-exports.Exam = Exam;
+exports.Tshirt = Tshirt;
