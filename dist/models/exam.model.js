@@ -38,6 +38,18 @@ class Exam {
                     method: "POST",
                     callback: this.createExam,
                     requireToken: true,
+                },
+                {
+                    route: "/update-exam/id/:id",
+                    method: "PUT",
+                    callback: this.updateExam,
+                    requireToken: true,
+                },
+                {
+                    route: "/delete-exam/id/:id",
+                    method: "DELETE",
+                    callback: this.deleteExam,
+                    requireToken: true,
                 }
             ]];
     }
@@ -69,6 +81,22 @@ class Exam {
             console.log('req.body ===> ', req.body);
             let examCtrl = model.controller;
             let resp = yield examCtrl.insert(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    deleteExam(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let examCtrl = model.controller;
+            let resp = yield examCtrl.remove(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    updateExam(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let examCtrl = model.controller;
+            let resp = yield examCtrl.update(req, null, null);
             res.json({ message: "Success", resp });
         });
     }

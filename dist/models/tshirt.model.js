@@ -38,6 +38,24 @@ class Tshirt {
                     method: "POST",
                     callback: this.getTshirtByColor,
                     requireToken: true,
+                },
+                {
+                    route: "/create-tshirt",
+                    method: "POST",
+                    callback: this.createTshirt,
+                    requireToken: true,
+                },
+                {
+                    route: "/update-tshirt/id/:id",
+                    method: "PUT",
+                    callback: this.updateTshirt,
+                    requireToken: true,
+                },
+                {
+                    route: "/delete-tshirt/id/:id",
+                    method: "DELETE",
+                    callback: this.deleteTshirt,
+                    requireToken: true,
                 }
             ]
         ];
@@ -62,6 +80,30 @@ class Tshirt {
             };
             let tshirtCtrl = model.controller;
             let resp = yield tshirtCtrl.get(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    createTshirt(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.insert(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    deleteTshirt(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.remove(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    updateTshirt(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.update(req, null, null);
             res.json({ message: "Success", resp });
         });
     }
