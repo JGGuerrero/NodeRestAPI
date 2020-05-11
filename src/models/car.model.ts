@@ -19,6 +19,7 @@ export class Car {
           onDelete: "cascade",
           onUpdate: "cascade",
         },
+        
       },
       "A table to store user car model",
       [
@@ -100,7 +101,7 @@ export class Car {
       req.body = {
           get: ["*"],
           where: {
-            id: req.params.id
+            id: req.params.color
           }
       }
       let carCtrl = model.controller;

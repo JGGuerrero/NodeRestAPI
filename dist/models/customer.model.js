@@ -8,17 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Car {
+class Customer {
     constructor(norm) {
         this.model = [
             {
                 id: { type: Number, key: "primary" },
-                make: { type: String, maxlength: 24 },
-                model: { type: String, maxlength: 24 },
-                year: { type: String, maxlength: 24 },
-                color: { type: String, maxlength: 24 },
-                mileage: { type: String, maxlength: 24 },
-                image_url: { type: String, maxlength: 1000 },
+                first_name: { type: String, maxlength: 50 },
+                last_name: { type: String, maxlength: 50 },
+                email: { type: String, maxlength: 100 },
+                address: { type: String, maxlength: 100 },
+                password: { type: String, maxlength: 100 },
                 user_id: {
                     type: Number,
                     key: "foreign",
@@ -27,85 +26,85 @@ class Car {
                     onUpdate: "cascade",
                 },
             },
-            "A table to store user car model",
+            "A table to store clothing model",
             [
                 {
-                    route: "/get-all-cars",
+                    route: "/get-all-clothing",
                     method: "POST",
-                    callback: this.getAllCars,
+                    callback: this.getAllClothing,
                     requireToken: true,
                 },
                 {
-                    route: "/get-car-by-id/:id",
+                    route: "/get-tshirt-by-color/:color",
                     method: "POST",
-                    callback: this.getCarById,
+                    callback: this.getClothingByColor,
                     requireToken: true,
                 },
                 {
-                    route: "/create-car",
+                    route: "/create-tshirt",
                     method: "POST",
-                    callback: this.createCar,
+                    callback: this.createClothing,
                     requireToken: true,
                 },
                 {
-                    route: "/update-car/id/:id",
+                    route: "/update-tshirt/id/:id",
                     method: "PUT",
-                    callback: this.updateCar,
+                    callback: this.updateClothing,
                     requireToken: true,
                 },
                 {
-                    route: "/delete-car/id/:id",
+                    route: "/delete-tshirt/id/:id",
                     method: "DELETE",
-                    callback: this.deleteCar,
+                    callback: this.deleteClothing,
                     requireToken: true,
                 }
             ]
         ];
     }
-    deleteCar(model) {
-        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body ===> ', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.remove(req, null, null);
-            res.json({ message: "Success", resp });
-        });
-    }
-    updateCar(model) {
-        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body ===> ', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.update(req, null, null);
-            res.json({ message: "Success", resp });
-        });
-    }
-    createCar(model) {
-        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body ===> ', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.insert(req, null, null);
-            res.json({ message: "Success", resp });
-        });
-    }
-    getAllCars(model) {
+    getAllClothing(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ["*"]
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.get(req, null, null);
             res.json({ message: "Success", resp });
         });
     }
-    getCarById(model) {
+    getClothingByColor(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ["*"],
                 where: {
-                    id: req.params.color
+                    color: req.params.color
                 }
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.get(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    createClothing(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.insert(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    deleteClothing(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.remove(req, null, null);
+            res.json({ message: "Success", resp });
+        });
+    }
+    updateClothing(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body ===> ', req.body);
+            let tshirtCtrl = model.controller;
+            let resp = yield tshirtCtrl.update(req, null, null);
             res.json({ message: "Success", resp });
         });
     }
@@ -116,4 +115,4 @@ class Car {
         return this._model;
     }
 }
-exports.Car = Car;
+exports.Customer = Customer;

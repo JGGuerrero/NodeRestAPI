@@ -1,0 +1,11 @@
+import { Request, Response, NextFunction } from 'express';
+export declare class Clothing {
+    _model: any;
+    constructor(norm: any);
+    getAllClothing(model: any): (req: Request<import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").ParamsDictionary, any, any, import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").Query>, res: Response<any>, next: NextFunction) => Promise<void>;
+    getClothingByColor(model: any): (req: Request<import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").ParamsDictionary, any, any, import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").Query>, res: Response<any>, next: NextFunction) => Promise<void>;
+    createClothing(model: any): (req: Request<import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").ParamsDictionary, any, any, import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").Query>, res: Response<any>, next: NextFunction) => Promise<void>;
+    deleteClothing(model: any): (req: Request<import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").ParamsDictionary, any, any, import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").Query>, res: Response<any>, next: NextFunction) => Promise<void>;
+    updateClothing(model: any): (req: Request<import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").ParamsDictionary, any, any, import("../../../../../../../../Users/Joshuah/Desktop/Fresno State Classes/IS183/NodeRestAPI/node_modules/@types/express-serve-static-core").Query>, res: Response<any>, next: NextFunction) => Promise<void>;
+    model: any;
+}
